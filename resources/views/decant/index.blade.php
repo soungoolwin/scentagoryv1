@@ -5,6 +5,7 @@
         <div class="container mx-auto py-12 px-4 md:px-0">
             <div class="grid grid-cols-12">
                 <div class="md:col-span-1"></div>
+
                 <!-- Filter Column -->
                 <div class="col-span-12 md:col-span-3 hidden md:block p-4 rounded-md mt-[100px]">
                     <div
@@ -12,11 +13,9 @@
                         <div class="px-4 py-2 bg-white">
                             <h2 class="text-xl font-bold">Brands</h2>
                         </div>
-
                         <div class="flex items-center">
                             <span class="w-full border-t border-dotted border-blue-dark"></span>
                         </div>
-
                         <div class="px-4 py-2">
                             <form method="GET" action="{{ route('decants.index') }}">
                                 <div class="font-sans text-black bg-white flex items-center justify-center my-3">
@@ -28,7 +27,6 @@
                                 </div>
                             </form>
                         </div>
-
                         <div>
                             <div class="container px-5 mx-auto">
                                 <div class="scroll-container divide-y overflow-auto h-auto">
@@ -61,12 +59,12 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                             @foreach ($decants as $decant)
                                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                    <a href="{{ route('products.decants.show', $decant->id) }}">
-                                        <img src="{{ asset('storage/' . $decant->image) }}" alt="Perfume Image"
+                                    <a href="{{ route('decants.show', $decant->id) }}">
+                                        <img src="{{ $decant->image }}" alt="Perfume Image"
                                             class="w-full h-48 object-cover" />
                                         <div class="p-4">
                                             <h2 class="text-xl font-semibold">{{ $decant->name }}</h2>
-                                            <p class="text-gray-600">{{ getPriceRange($decant) }}</p>
+                                            <p class="text-gray-600">{{ $decant->priceRange ?? 'Price not available' }}</p>
                                         </div>
                                     </a>
                                 </div>
@@ -79,26 +77,17 @@
                         {{ $decants->links() }}
                     </div>
                 </div>
+
                 <div class="md:col-span-1"></div>
             </div>
         </div>
     </div>
-@endsection
 
-@php
-    function getPriceRange($decant)
-    {
-        if (!isset($decant->prices) || count($decant->prices) === 0) {
-            return 'No prices available';
-        }
-        $prices = array_map(function ($price) {
-            return (float) $price->price;
-        }, $decant->prices);
-        $minPrice = min($prices);
-        $maxPrice = max($prices);
-        return "{$minPrice} - {$maxPrice} MMK";
-    }
-@endphp
+    <script>
+        // If you plan to add dynamic price range calculation here in the future, 
+        // ensure you have the appropriate elements to interact with.
+    </script>
+@endsection
 
 <style scoped>
     .custom-scrollbar {

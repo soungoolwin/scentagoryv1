@@ -6,33 +6,29 @@ use App\Models\Brand;
 use App\Models\Decant;
 use App\Models\Price;
 use App\Models\Size;
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class DecantSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-        // Create brands
         $brands = Brand::factory()->count(5)->create();
 
-        // Create unique sizes
-        $sizes = [];
-        $sizes[] = Size::create(['size' => '5ml']);
-        $sizes[] = Size::create(['size' => '3ml']);
-        $sizes[] = Size::create(['size' => '10ml']);
+        // Create sizes
+        $sizes = Size::factory()->count(5)->create();
 
-        // Create decants and define prices
+        // Create decants and associate them with random brands and sizes
         foreach ($brands as $brand) {
             $decants = Decant::factory()->count(3)->create([
                 'brand_id' => $brand->id,
             ]);
 
             foreach ($decants as $decant) {
+                // Assign random sizes and prices to each decant
                 foreach ($sizes as $size) {
                     Price::create([
                         'decant_id' => $decant->id,

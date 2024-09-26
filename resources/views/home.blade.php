@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('content')
-    <section class="bg-cover bg-center h-[600px]" style="background-image: url('/images/hero.jpg')">
+    <section class="bg-cover bg-center h-[600px]" style="background-image: url('/images/test.jpg')">
         <div class="container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white">
             <h1 class="text-5xl font-bold mb-4">Discover Your Signature Scent</h1>
             <p class="text-xl mb-6">Premium fragrance decants, carefully curated just for you.</p>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('brand_category')->nullable();
             $table->string('country')->nullable();
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
-            $table->string('image');
+            $table->text('image');
             $table->timestamps();
         });
     }
