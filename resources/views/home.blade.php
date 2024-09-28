@@ -10,40 +10,26 @@
     </section>
 
     <!-- Featured Products -->
+    <!-- Featured Products -->
     <section class="py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-8">Featured Decants</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="border p-4 rounded-lg">
-                    <img src="https://example.com/product1.jpg" alt="Product 1" class="w-full h-48 object-cover rounded" />
-                    <h3 class="text-xl font-semibold mt-4">Product 1</h3>
-                    <p class="text-gray-600">$29.99</p>
-                </div>
-                <!-- Product 2 -->
-                <div class="border p-4 rounded-lg">
-                    <img src="https://example.com/product2.jpg" alt="Product 2" class="w-full h-48 object-cover rounded" />
-                    <h3 class="text-xl font-semibold mt-4">Product 2</h3>
-                    <p class="text-gray-600">$29.99</p>
-                </div>
-                <!-- Product 3 -->
-                <div class="border p-4 rounded-lg">
-                    <img src="https://example.com/product3.jpg" alt="Product 3" class="w-full h-48 object-cover rounded" />
-                    <h3 class="text-xl font-semibold mt-4">Product 3</h3>
-                    <p class="text-gray-600">$29.99</p>
-                </div>
-                <!-- Product 4 -->
-                <div class="border p-4 rounded-lg">
-                    <img src="https://example.com/product4.jpg" alt="Product 4" class="w-full h-48 object-cover rounded" />
-                    <h3 class="text-xl font-semibold mt-4">Product 4</h3>
-                    <p class="text-gray-600">$29.99</p>
-                </div>
+                @foreach ($featuredDecants as $decant)
+                    <div class="border p-4 rounded-lg">
+                        <img src="{{ $decant->image }}" alt="{{ $decant->name }}"
+                            class="w-full h-48 object-cover rounded" />
+                        <h3 class="text-xl font-semibold mt-4">{{ $decant->name }}</h3>
+                        <p class="text-gray-600">{{ $decant->priceRange ?? 'Price not available' }}</p>
+                    </div>
+                @endforeach
             </div>
             <div class="mt-8">
-                <a href="#" class="bg-gray-900 text-white px-6 py-3 rounded">View More</a>
+                <a href="{{ route('decants.index') }}" class="bg-gray-900 text-white px-6 py-3 rounded">View More</a>
             </div>
         </div>
     </section>
+
 
     <!-- About Section -->
     <section class="bg-gray-100 py-16">
@@ -64,27 +50,34 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Review 1 -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <p class="text-gray-600">"Amazing selection and top-notch service. I'm in love with my new scent!"</p>
+                    <p class="text-gray-600">"ဈေးသင့်တယ်
+                        သေချာရှင်းပြပေးတယ်
+                        review လေးတွေကိုလည်း တော်တော်ကောင်းကောင်းလေးရေးထားတာတွေ့ရတယ်
+                        ဒီနောက်ပိုင်း content အသစ်အဆန်းလေးတွေပါလုပ်လာတာ တော်တော်လေးသဘောကျဖို့ကောင်းတယ်။"</p>
                     <div class="mt-4">
                         <span class="text-yellow-500">★★★★★</span>
                     </div>
-                    <p class="mt-2 text-gray-600">- Customer Name</p>
+                    <p class="mt-2 text-gray-600"> Min Thant Ko</p>
                 </div>
                 <!-- Review 2 -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <p class="text-gray-600">"Great quality and fast shipping. Highly recommend!"</p>
+                    <p class="text-gray-600">"100% safe and authentic and can also give great service to the
+                        customers.Admins are very patient and they can recommend the perfume that suit you well.You will not
+                        regret for buying from here."</p>
                     <div class="mt-4">
                         <span class="text-yellow-500">★★★★★</span>
                     </div>
-                    <p class="mt-2 text-gray-600">- Customer Name</p>
+                    <p class="mt-2 text-gray-600"> Khant Ye Zaw</p>
                 </div>
                 <!-- Review 3 -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <p class="text-gray-600">"I'm very happy with my purchase. Will definitely buy again!"</p>
+                    <p class="text-gray-600">"တွေ့ရခဲတဲ့ Niche တွေ ပန်းအနံ့လေးတွေကို
+                        သေချာတစ်ခုချင်းရှင်းပြထားတာလေးတွေအရမ်းသဘောကျပါတယ်ရှင် ကိုယ်ကလည်း ရေမွှေး Crazy ဆိုတော့
+                        အနံ့လေးတွေအကြောင်းဖတ်ရရင်ပျော်နေရော ဒီထက်မကအောင်မြင်ပါစေရှင်"</p>
                     <div class="mt-4">
                         <span class="text-yellow-500">★★★★★</span>
                     </div>
-                    <p class="mt-2 text-gray-600">- Customer Name</p>
+                    <p class="mt-2 text-gray-600"> Phyo Phyo Nyein</p>
                 </div>
             </div>
         </div>

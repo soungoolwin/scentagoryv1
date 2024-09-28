@@ -190,7 +190,7 @@
                         <a href="{{ url('/about-us') }}" class="hover:underline">About Us</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Products</a>
+                        <a href="{{ url('/products/decants') }}" class="hover:underline">Products</a>
                     </li>
                 </ul>
             </div>

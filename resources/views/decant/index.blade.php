@@ -6,7 +6,7 @@
             <div class="grid grid-cols-12">
                 <div class="md:col-span-1"></div>
 
-                <!-- Filter Column -->
+                <!-- Filter Column (Optional, you can keep this for brands if you want) -->
                 <div class="col-span-12 md:col-span-3 hidden md:block p-4 rounded-md mt-[100px]">
                     <div
                         class="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden max-h-[2150px] custom-scrollbar">
@@ -15,17 +15,6 @@
                         </div>
                         <div class="flex items-center">
                             <span class="w-full border-t border-dotted border-blue-dark"></span>
-                        </div>
-                        <div class="px-4 py-2">
-                            <form method="GET" action="{{ route('decants.index') }}">
-                                <div class="font-sans text-black bg-white flex items-center justify-center my-3">
-                                    <div class="border rounded overflow-hidden flex">
-                                        <input type="text" name="brandSearch" class="px-4 py-2"
-                                            placeholder="Search..." />
-                                        <button type="submit" class="bg-blue-500 text-white px-4 py-2">Search</button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                         <div>
                             <div class="container px-5 mx-auto">
@@ -50,7 +39,7 @@
                             <h1 class="text-4xl font-semibold mb-5 text-center cormorant-garamond-regular">Decants</h1>
                             <form method="GET" action="{{ route('decants.index') }}"
                                 class="flex w-full max-w-lg md:justify-end justify-center mb-5">
-                                <input type="text" name="search" placeholder="Search..."
+                                <input type="text" name="search" placeholder="Search by brand or decant..."
                                     class="p-2 rounded border border-gray-300 h-[42px] w-[70%] focus:outline-none text-black" />
                                 <button type="submit" class="bg-blue-500 text-white px-4 py-2">Search</button>
                             </form>
@@ -73,8 +62,8 @@
                     </div>
 
                     <!-- Paginator -->
-                    <div class="mt-6 flex justify-center">
-                        {{ $decants->links() }}
+                    <div class="mt-4">
+                        {{ $decants->links('pagination::custom') }}
                     </div>
                 </div>
 
@@ -82,35 +71,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // If you plan to add dynamic price range calculation here in the future, 
-        // ensure you have the appropriate elements to interact with.
-    </script>
 @endsection
-
-<style scoped>
-    .custom-scrollbar {
-        max-height: 2150px;
-        overflow-y: auto;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 0px;
-        /* Remove scrollbar space */
-        background: transparent;
-        /* Optional: just to make sure */
-    }
-
-    .custom-scrollbar {
-        -ms-overflow-style: none;
-        /* Internet Explorer 10+ */
-        scrollbar-width: none;
-        /* Firefox */
-    }
-
-    .custom-scrollbar::-webkit-scrollbar {
-        display: none;
-        /* Safari and Chrome */
-    }
-</style>

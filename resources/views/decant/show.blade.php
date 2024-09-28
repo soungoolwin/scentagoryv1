@@ -36,16 +36,22 @@
                                             onchange="document.getElementById('size-form').submit()">
                                             @foreach ($decant->prices as $price)
                                                 <option value="{{ $price->size->id }}"
-                                                    {{ $selectedPrice->size_id == $price->size->id ? 'selected' : '' }}>
+                                                    {{ $selectedPrice && $selectedPrice->size_id == $price->size->id ? 'selected' : '' }}>
                                                     {{ $price->size->size }} ml
                                                 </option>
                                             @endforeach
                                         </select>
                                     </form>
 
-                                    <p class="text-xl text-gray-600 mt-5">
-                                        {{ $selectedPrice->price }} MMK
-                                    </p>
+                                    @if ($selectedPrice)
+                                        <p class="text-xl text-gray-600 mt-5">
+                                            {{ $selectedPrice->price }} MMK
+                                        </p>
+                                    @else
+                                        <p class="text-xl text-gray-600 mt-5">
+                                            Price not available for the selected size.
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
