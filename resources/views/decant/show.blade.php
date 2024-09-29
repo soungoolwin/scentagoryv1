@@ -53,6 +53,30 @@
                                         </p>
                                     @endif
                                 </div>
+
+                                <!-- Additional Information -->
+                                <div class="space-y-4 mt-6">
+                                    <div>
+                                        <strong class="text-lg">Scent Accords:</strong>
+                                        <p class="text-gray-600">{{ $decant->scent_accords }}</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-lg">Top Note:</strong>
+                                        <p class="text-gray-600">{{ $decant->top_note }}</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-lg">Base Note:</strong>
+                                        <p class="text-gray-600">{{ $decant->base_note }}</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-lg">Gender:</strong>
+                                        <p class="text-gray-600">{{ $decant->gender }}</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-lg">Description:</strong>
+                                        <p class="text-gray-600">{{ $decant->description }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

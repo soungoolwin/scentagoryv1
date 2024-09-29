@@ -18,14 +18,17 @@
                     <x-nav-link :href="route('admin.decants')" :active="request()->routeIs('admin.decants')">
                         {{ __('Decant') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.brands')" :active="request()->routeIs('admin.brands')">
+                    <x-nav-link :href="route('admin.brands.brands')" :active="request()->routeIs('admin.brands')">
                         {{ __('Brand') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.sizes')" :active="request()->routeIs('admin.sizes')">
+                    <x-nav-link :href="route('admin.sizes.sizes')" :active="request()->routeIs('admin.sizes')">
                         {{ __('Size') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.prices')" :active="request()->routeIs('admin.prices')">
+                    <x-nav-link :href="route('admin.prices.prices')" :active="request()->routeIs('admin.prices')">
                         {{ __('Price') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.videos')" :active="request()->routeIs('admin.videos')">
+                        {{ __('Video') }}
                     </x-nav-link>
                 </div>
             </div>

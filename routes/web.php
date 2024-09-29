@@ -66,14 +66,21 @@ Route::get('/dashboard/prices/edit/{id}', [AdminController::class, 'editPrice'])
 Route::put('/dashboard/prices/update/{id}', [AdminController::class, 'updatePrice'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.prices.update');
 Route::delete('/dashboard/prices/delete/{id}', [AdminController::class, 'deletePrice'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.prices.delete');
 
+
 // Repeat similar routes for brands, sizes, and prices
+Route::get('/dashboard/videos', [AdminController::class, 'videos'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.videos');
+Route::get('/dashboard/videos/create', [AdminController::class, 'createVideo'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.videos.create');
+Route::post('/dashboard/videos', [AdminController::class, 'storeVideo'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.videos.store');
+Route::get('/dashboard/videos/edit/{id}', [AdminController::class, 'editVideo'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.videos.edit');
+Route::put('/dashboard/videos/update/{id}', [AdminController::class, 'updateVideo'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.videos.update');
+Route::delete('/dashboard/videos/delete/{id}', [AdminController::class, 'deleteVideo'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.videos.delete');
 
 
 
-Route::get('/dashboard/brands', [AdminController::class, 'brands'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.brands');
+// Route::get('/dashboard/brands', [AdminController::class, 'brands'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.brands');
 
-Route::get('/dashboard/sizes', [AdminController::class, 'sizes'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.sizes');
+// Route::get('/dashboard/sizes', [AdminController::class, 'sizes'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.sizes');
 
-Route::get('/dashboard/prices', [AdminController::class, 'prices'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.prices');
+// Route::get('/dashboard/prices', [AdminController::class, 'prices'])->middleware(['auth', 'verified', AdminMiddleware::class])->name('admin.prices');
 
 require __DIR__ . '/auth.php';

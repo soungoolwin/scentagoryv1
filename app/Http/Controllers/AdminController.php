@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Decant;
 use App\Models\Price;
 use App\Models\Size;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -268,5 +269,56 @@ class AdminController extends Controller
         $price = Price::findOrFail($id); // Find price by ID
         $price->delete(); // Delete the price
         return redirect()->route('admin.prices')->with('success', 'Price deleted successfully.');
+    }
+
+
+    public function videos()
+    {
+        $videos = Video::paginate(10); // Fetch videos with pagination
+        return view('admin.videos.videos', compact('videos'));
+    }
+
+    // Show form to edit an existing video
+    public function editVideo($id)
+    {
+        $video = Video::findOrFail($id); // Find video by ID
+        return view('admin.videos.edit', compact('video')); // Pass data to the edit view
+    }
+    public function storeVideo(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'url' => 'required',
+        ]);
+
+        // Create a new video
+        Video::create($validatedData);
+
+        return redirect()->route('admin.videos')->with('success', 'Video added successfully.');
+    }
+
+
+    // Update an existing video
+    public function updateVideo(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'url' => 'required|url',
+        ]);
+
+        $video = Video::findOrFail($id); // Find video by ID
+        $video->update($validatedData); // Update video with validated data
+        return redirect()->route('admin.videos')->with('success', 'Video updated successfully.');
+    }
+
+    // Delete a video
+    public function deleteVideo($id)
+    {
+        $video = Video::findOrFail($id); // Find video by ID
+        $video->delete(); // Delete the video
+        return redirect()->route('admin.videos')->with('success', 'Video deleted successfully.');
     }
 }

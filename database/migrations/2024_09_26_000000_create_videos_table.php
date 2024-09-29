@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // Video name
             $table->text('description'); // Video description
-            $table->string('url'); // Video link
+            $table->text('url'); // Video link
             $table->timestamps(); // created_at and updated_at columns
         });
     }
