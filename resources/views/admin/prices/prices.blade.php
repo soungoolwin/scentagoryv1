@@ -44,6 +44,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-4">
+            {{ $prices->links('pagination::custom') }}
+            <!-- Using the same pagination layout as the decants -->
+        </div>
 
         <!-- Add New Price Form -->
         <div class="mb-6">
@@ -88,9 +92,9 @@
             </form>
         </div>
 
-        <!-- Pagination -->
+        {{-- <!-- Pagination -->
         <div class="mt-6">
             {{ $prices->links() }}
-        </div>
+        </div> --}}
     </div>
 </x-app-layout>
