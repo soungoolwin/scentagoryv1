@@ -38,7 +38,7 @@
     <div>
         <!-- Top Navigation Bar -->
         <nav class="bg-[#290E11] text-white">
-            <div class="container mx-auto py-6 px-4 md:px-0">
+            <div class="container mx-auto px-4 md:px-0">
                 <div class="grid grid-cols-12 gap-4">
                     <!-- Left free space on large screens -->
                     <div class="lg:col-span-1"></div>
@@ -46,7 +46,7 @@
                     <div class="col-span-12 lg:col-span-10">
                         <div class="grid grid-cols-12 gap-4">
                             <div class="col-span-6 md:col-span-4 flex items-center py-0">
-                                <img src="{{ asset('images/logo.png') }}" class="w-[90px] h-[80px]" alt="">
+                                <img src="{{ asset('images/logo.png') }}" class="w-[130px] h-[130px]" alt="">
                             </div>
 
                             <!-- Social Links (Hidden on small screens) -->
