@@ -1,13 +1,22 @@
 @extends('components.layout')
 
 @section('content')
-    <section class="bg-cover bg-center h-[600px]" style="background-image: url('/images/test.jpg')">
-        <div class="container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white">
-            <h1 class="text-5xl font-bold mb-4">Discover Your Signature Scent</h1>
-            <p class="text-xl mb-6">Premium fragrance decants, carefully curated just for you.</p>
+    <section class="bg-[#290F11] text-white py-16 px-4">
+        <div class="container mx-auto flex flex-col items-center text-center">
+            <h1 class="text-5xl font-bold mb-4 sm:text-4xl">Discover Your Signature Scent</h1>
+            <p class="text-xl mb-6 sm:text-lg">Premium fragrance decants, carefully curated just for you.</p>
             <a href="#" class="bg-gray-900 text-white px-6 py-3 rounded">Shop Now</a>
         </div>
     </section>
+
+    <section class="bg-[#290F11] py-16 px-4">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="w-full h-[300px] bg-cover bg-center" style="background-image: url('/images/Hero1.jpg');"></div>
+            <div class="w-full h-[300px] bg-cover bg-center" style="background-image: url('/images/Hero2.jpg');"></div>
+            <div class="w-full h-[300px] bg-cover bg-center" style="background-image: url('/images/Hero3.jpg');"></div>
+        </div>
+    </section>
+
 
     <!-- Featured Products -->
     <!-- Featured Products -->

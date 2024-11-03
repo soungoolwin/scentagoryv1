@@ -112,7 +112,7 @@ class AdminController extends Controller
         // Validate and create a new brand
         $validatedData = $request->validate(['name' => 'required|string|max:255']);
         Brand::create($validatedData);
-        return redirect()->route('admin.brands')->with('success', 'Brand created successfully.');
+        return redirect()->route('admin.brands.brands')->with('success', 'Brand created successfully.');
     }
 
     public function editBrand($id)
@@ -133,7 +133,7 @@ class AdminController extends Controller
         $brand->update($validatedData);
 
         // Redirect with success message
-        return redirect()->route('admin.brands')->with('success', 'Brand updated successfully.');
+        return redirect()->route('admin.brands.brands')->with('success', 'Brand updated successfully.');
     }
 
     public function deleteBrand($id)
@@ -141,7 +141,7 @@ class AdminController extends Controller
         // Delete the brand
         $brand = Brand::findOrFail($id);
         $brand->delete();
-        return redirect()->route('admin.brands')->with('success', 'Brand deleted successfully.');
+        return redirect()->route('admin.brands.brands')->with('success', 'Brand deleted successfully.');
     }
 
     // Sizes
@@ -165,7 +165,7 @@ class AdminController extends Controller
         ]);
 
         Size::create($validatedData); // Create a new size
-        return redirect()->route('admin.sizes')->with('success', 'Size created successfully.');
+        return redirect()->route('admin.sizes.sizes')->with('success', 'Size created successfully.');
     }
 
 
@@ -185,7 +185,7 @@ class AdminController extends Controller
 
         $size = Size::findOrFail($id); // Find size by ID
         $size->update($validatedData); // Update size
-        return redirect()->route('admin.sizes')->with('success', 'Size updated successfully.');
+        return redirect()->route('admin.sizes.sizes')->with('success', 'Size updated successfully.');
     }
 
 
@@ -194,16 +194,25 @@ class AdminController extends Controller
     {
         $size = Size::findOrFail($id); // Find size by ID
         $size->delete(); // Delete the size
-        return redirect()->route('admin.sizes')->with('success', 'Size deleted successfully.');
+        return redirect()->route('admin.sizes.sizes')->with('success', 'Size deleted successfully.');
     }
 
     // Prices
-    public function prices()
+    public function prices(Request $request)
     {
-        $prices = Price::with('decant', 'size')->paginate(10);
+        $query = Price::with('decant', 'size');
+
+        if ($request->has('search') && $request->search != '') {
+            $query->whereHas('decant', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $prices = $query->paginate(10)->appends(['search' => $request->search]);
         $decants = Decant::all();
-        $sizes = Size::all(); // Fetch prices with their relationships
-        return view('admin.prices.prices', compact('prices', 'decants', 'sizes')); // Pass data to the prices listing view
+        $sizes = Size::all();
+
+        return view('admin.prices.prices', compact('prices', 'decants', 'sizes'));
     }
 
     // Show form to create a new price
@@ -237,7 +246,7 @@ class AdminController extends Controller
         // Create a new price
         Price::create($validatedData);
 
-        return redirect()->route('admin.prices')->with('success', 'Price created successfully.');
+        return redirect()->route('admin.prices.prices')->with('success', 'Price created successfully.');
     }
 
     // Show form to edit an existing price
@@ -260,7 +269,7 @@ class AdminController extends Controller
 
         $price = Price::findOrFail($id); // Find price by ID
         $price->update($validatedData); // Update price
-        return redirect()->route('admin.prices')->with('success', 'Price updated successfully.');
+        return redirect()->route('admin.prices.prices')->with('success', 'Price updated successfully.');
     }
 
     // Delete a price
@@ -268,7 +277,7 @@ class AdminController extends Controller
     {
         $price = Price::findOrFail($id); // Find price by ID
         $price->delete(); // Delete the price
-        return redirect()->route('admin.prices')->with('success', 'Price deleted successfully.');
+        return redirect()->route('admin.prices.prices')->with('success', 'Price deleted successfully.');
     }
 
 

@@ -2,6 +2,16 @@
     <div class="py-6 px-4 md:px-12">
         <h2 class="text-2xl font-semibold mb-6 text-gray-800">Manage Prices</h2>
 
+        <!-- Search Box -->
+        <form method="GET" action="{{ route('admin.prices.prices') }}" class="mb-6">
+            <label for="search" class="block text-sm font-medium text-gray-700">Search by Decant Name</label>
+            <div class="flex mt-1">
+                <input type="text" name="search" id="search" placeholder="Enter decant name..."
+                    value="{{ request('search') }}" class="border border-gray-300 rounded-md p-2 w-full">
+                <button type="submit" class="ml-2 bg-blue-500 text-white rounded-md px-4 py-2">Search</button>
+            </div>
+        </form>
+
         <!-- Price Listing -->
         <div class="mb-6">
             <h3 class="text-xl font-semibold mb-4">All Prices</h3>
@@ -18,8 +28,8 @@
                     @foreach ($prices as $price)
                         <tr class="text-center">
                             <td class="py-2 border-b border-gray-200">{{ $price->decant->name }}</td>
-                            <td class="py-2 border-b border-gray-200">{{ $price->size->size }}</td> <!-- Updated -->
-                            <td class="py-2 border-b border-gray-200">${{ $price->price }}</td>
+                            <td class="py-2 border-b border-gray-200">{{ $price->size->size }}</td>
+                            <td class="py-2 border-b border-gray-200">{{ $price->price }} Kyat</td>
                             <td class="py-2 border-b border-gray-200">
                                 <a href="{{ route('admin.prices.edit', $price->id) }}" class="text-blue-500">Edit</a>
                                 <form action="{{ route('admin.prices.delete', $price->id) }}" method="POST"
@@ -56,7 +66,7 @@
                         <label for="size_id" class="block text-sm font-medium">Select Size</label>
                         <select name="size_id" class="border border-gray-300 rounded-md p-2 w-full">
                             @foreach ($sizes as $size)
-                                <option value="{{ $size->id }}">{{ $size->size }}</option> <!-- Updated -->
+                                <option value="{{ $size->id }}">{{ $size->size }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -80,7 +90,7 @@
 
         <!-- Pagination -->
         <div class="mt-6">
-            {{ $prices->links() }} <!-- Pagination links -->
+            {{ $prices->links() }}
         </div>
     </div>
 </x-app-layout>

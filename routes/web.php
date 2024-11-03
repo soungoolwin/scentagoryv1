@@ -16,8 +16,8 @@ Route::get('/about-us', function () {
 
 Route::get('/review-videos', [VideoController::class, 'index'])->name('videos.index');
 
-Route::get('/products/decants', [DecantController::class, 'index'])->name('decants.index');
-Route::get('/products/decants/{id}', [DecantController::class, 'show'])->name('decants.show');
+Route::get('/decants', [DecantController::class, 'index'])->name('decants.index');
+Route::get('/decants/{id}', [DecantController::class, 'show'])->name('decants.show');
 
 
 

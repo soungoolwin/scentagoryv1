@@ -53,7 +53,7 @@
                         </p>
                     </div>
                     <div>
-                        <img src="{{ asset('images/vision.jpeg') }}" alt="Our Vision"
+                        <img src="{{ asset('images/vision.jpg') }}" alt="Our Vision"
                             class="w-full md:h-[500px] h-[300px] object-cover rounded-lg shadow-lg" />
                     </div>
                 </div>

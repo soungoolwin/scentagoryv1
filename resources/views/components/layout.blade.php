@@ -36,6 +36,7 @@
 
 <body>
     <div>
+        <!-- Top Navigation Bar -->
         <nav class="bg-[#290E11] text-white">
             <div class="container mx-auto py-6 px-4 md:px-0">
                 <div class="grid grid-cols-12 gap-4">
@@ -44,19 +45,12 @@
 
                     <div class="col-span-12 lg:col-span-10">
                         <div class="grid grid-cols-12 gap-4">
-                            <!-- Logo -->
-                            <div class="col-span-6 md:col-span-4 flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor"
-                                    class="w-6 h-6 mr-2 md:hidden block cursor-pointer" onclick="toggleMenu()">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-                                </svg>
-                                <a href="#" class="text-xl font-bold">Scentagory</a>
+                            <div class="col-span-6 md:col-span-4 flex items-center py-0">
+                                <img src="{{ asset('images/logo.png') }}" class="w-[90px] h-[80px]" alt="">
                             </div>
 
-                            <!-- Social Links -->
-                            <div class="col-span-6 md:col-span-8 flex justify-end items-center">
+                            <!-- Social Links (Hidden on small screens) -->
+                            <div class="col-span-6 md:col-span-8 justify-end items-center hidden md:flex">
                                 <a href="https://www.facebook.com/Scentagory" class="hover:underline px-2"><i
                                         class="fa-brands fa-facebook"></i></a>
                                 <a href="#" class="hover:underline px-2"><i class="fa-brands fa-youtube"></i></a>
@@ -64,6 +58,13 @@
                                         class="fa-brands fa-telegram"></i></a>
                                 <a href="https://www.tiktok.com/@scentagory?_t=8n1x1ekEvzj&_r=1"
                                     class="hover:underline px-2"><i class="fa-brands fa-tiktok"></i></a>
+                            </div>
+
+                            <!-- Menu Toggle Button (Visible on small screens) -->
+                            <div class="col-span-6 md:hidden flex justify-end items-center">
+                                <button onclick="toggleMenu()" class="text-white">
+                                    <i class="fa-solid fa-bars text-2xl"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -74,20 +75,7 @@
             </div>
         </nav>
 
-        <nav class="bg-[#290E11] p-4 md:block hidden">
-            <div class="container mx-auto flex items-center justify-center">
-                <ul class="flex justify-center space-x-4">
-                    <li><a href="{{ url('/') }}" class="hover:underline px-5 text-white">Home</a></li>
-                    <li><a href="{{ url('/about-us') }}" class="hover:underline px-5 text-white">About</a></li>
-                    <li><a href="{{ url('/products/decants') }}" class="hover:underline px-5 text-white">Products</a>
-                    </li>
-                    <li><a href="{{ url('/review-videos') }}" class="hover:underline px-5 text-white">Review Videos</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Full-screen Navigation -->
+        <!-- Full-screen Navigation for Small Screens -->
         <div id="fullScreenMenu" class="fixed inset-0 bg-[#290E11] bg-opacity-95 z-50 hidden">
             <div class="container mx-auto p-4 flex flex-col">
                 <button class="self-end text-white" onclick="toggleMenu()">
@@ -103,10 +91,6 @@
                             </svg>
                             <a href="{{ url('/') }}" class="hover:underline text-white text-xl">Home</a>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
                     </li>
                     <li onclick="toggleMenu()" class="flex justify-between pt-3 cursor-pointer">
                         <div class="flex">
@@ -117,10 +101,6 @@
                             </svg>
                             <a href="{{ url('/about-us') }}" class="hover:underline text-white text-xl">About</a>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
                     </li>
                     <li onclick="toggleMenu()" class="flex justify-between pt-3 cursor-pointer">
                         <div class="flex">
@@ -129,13 +109,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M12 2C13.476 2 14.826 2.329 15.955 2.916c1.122.576 2.086 1.395 2.634 2.447.517 1.042.727 2.179.527 3.318-.245 1.371-1.43 2.251-2.877 2.251H7.5v1.5h10.044c.222 0 .398-.175.398-.394 0-.333-.267-.652-.682-.823-.87-.3-1.626-.842-2.092-1.547a3.19 3.19 0 0 0-.496-.571C12.925 6.187 12.156 6 11.25 6H3a3 3 0 0 0-3 3v2.75h1.5V9a1.5 1.5 0 0 1 1.5-1.5h8.437c.292 0 .557-.21.63-.5.079-.41-.181-.757-.635-.757H5.25a1.5 1.5 0 0 0-1.5 1.5v5.75a4.497 4.497 0 0 0 4.485 4.494 3.755 3.755 0 0 0 3.472 2.008c1.471 0 2.826-.66 3.65-1.688 1.46-1.783 1.998-4.5 1.687-6.758-.133-.736-.523-1.372-1.022-1.858C17.479 6.421 15.925 5 12 5h-.75V2H12z" />
                             </svg>
-                            <a href="{{ url('/products/decants') }}"
-                                class="hover:underline text-white text-xl">Products</a>
+                            <a href="{{ url('/decants') }}" class="hover:underline text-white text-xl">Products</a>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
                     </li>
                     <li onclick="toggleMenu()" class="flex justify-between pt-3 cursor-pointer">
                         <div class="flex">
@@ -147,14 +122,25 @@
                             <a href="{{ url('/review-videos') }}" class="hover:underline text-white text-xl">Review
                                 Videos</a>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
                     </li>
                 </ul>
             </div>
         </div>
+
+        <!-- Desktop Navigation (Visible on larger screens) -->
+        <nav class="bg-[#290E11] p-4 md:block hidden">
+            <div class="container mx-auto flex items-center justify-center">
+                <ul class="flex justify-center space-x-4">
+                    <li><a href="{{ url('/') }}" class="hover:underline px-5 text-white">Home</a></li>
+                    <li><a href="{{ url('/about-us') }}" class="hover:underline px-5 text-white">About</a></li>
+                    <li><a href="{{ url('/decants') }}" class="hover:underline px-5 text-white">Products</a>
+                    </li>
+                    <li><a href="{{ url('/review-videos') }}" class="hover:underline px-5 text-white">Review
+                            Videos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
 
     @yield('content')
