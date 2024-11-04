@@ -85,7 +85,112 @@
                         {{ $decants->links('pagination::custom') }}
                     </div>
 
-                    <!-- Form for adding a new decant omitted for brevity -->
+                    <h3 class="mt-8">Add New Decant</h3>
+                    <div class="overflow-y-auto max-h-80 mt-4 border border-gray-300 p-4">
+                        <form action="{{ route('admin.decants.store') }}" method="POST" class="flex space-x-4">
+                            @csrf
+
+                            <!-- Form Fields Container -->
+                            <div class="flex space-x-4">
+                                <div class="min-w-[150px]">
+                                    <label for="name" class="block text-sm font-medium">Decant Name</label>
+                                    <input type="text" name="name" required
+                                        class="border border-gray-300 rounded-md p-2 w-full">
+                                    @if ($errors->has('name'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('name') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="description" class="block text-sm font-medium">Description</label>
+                                    <textarea name="description" class="border border-gray-300 rounded-md p-2 w-full" rows="1"></textarea>
+                                    @if ($errors->has('description'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('description') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="scent_accords" class="block text-sm font-medium">Scent Accords</label>
+                                    <textarea name="scent_accords" class="border border-gray-300 rounded-md p-2 w-full" rows="1"></textarea>
+                                    @if ($errors->has('scent_accords'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('scent_accords') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="top_note" class="block text-sm font-medium">Top Note</label>
+                                    <textarea name="top_note" class="border border-gray-300 rounded-md p-2 w-full" rows="1"></textarea>
+                                    @if ($errors->has('top_note'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('top_note') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="base_note" class="block text-sm font-medium">Base Note</label>
+                                    <textarea name="base_note" class="border border-gray-300 rounded-md p-2 w-full" rows="1"></textarea>
+                                    @if ($errors->has('base_note'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('base_note') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="gender" class="block text-sm font-medium">Gender</label>
+                                    <select name="gender" class="border border-gray-300 rounded-md p-2 w-full">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Unisex">Unisex</option>
+                                    </select>
+                                    @if ($errors->has('gender'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('gender') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="brand_category" class="block text-sm font-medium">Brand
+                                        Category</label>
+                                    <input type="text" name="brand_category" required
+                                        class="border border-gray-300 rounded-md p-2 w-full">
+                                    @if ($errors->has('brand_category'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('brand_category') }}
+                                        </p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="country" class="block text-sm font-medium">Country</label>
+                                    <input type="text" name="country"
+                                        class="border border-gray-300 rounded-md p-2 w-full">
+                                    @if ($errors->has('country'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('country') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="brand_id" class="block text-sm font-medium">Brand</label>
+                                    <select name="brand_id" class="border border-gray-300 rounded-md p-2 w-full">
+                                        @foreach ($brands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('brand_id'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('brand_id') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="min-w-[150px]">
+                                    <label for="image" class="block text-sm font-medium">Image URL</label>
+                                    <input type="text" name="image" required
+                                        class="border border-gray-300 rounded-md p-2 w-full">
+                                    @if ($errors->has('image'))
+                                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('image') }}</p>
+                                    @endif
+                                </div>
+
+                                <button type="submit"
+                                    class="bg-blue-500 text-white rounded-md p-2 mt-4">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

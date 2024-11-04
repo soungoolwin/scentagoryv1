@@ -13,6 +13,9 @@
                     <label for="name" class="block text-sm font-semibold text-gray-700">Decant Name</label>
                     <input type="text" name="name" value="{{ $decant->name }}" required
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @if ($errors->has('name'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('name') }}</p>
+                    @endif
                 </div>
 
                 <!-- Brand -->
@@ -26,6 +29,9 @@
                             </option>
                         @endforeach
                     </select>
+                    @if ($errors->has('brand_id'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('brand_id') }}</p>
+                    @endif
                 </div>
 
                 <!-- Brand Category -->
@@ -33,6 +39,9 @@
                     <label for="brand_category" class="block text-sm font-semibold text-gray-700">Brand Category</label>
                     <input type="text" name="brand_category" value="{{ $decant->brand_category }}"
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @if ($errors->has('brand_category'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('brand_category') }}</p>
+                    @endif
                 </div>
 
                 <!-- Image URL -->
@@ -40,6 +49,9 @@
                     <label for="image" class="block text-sm font-semibold text-gray-700">Image URL</label>
                     <input type="text" name="image" value="{{ $decant->image }}" required
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @if ($errors->has('image'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('image') }}</p>
+                    @endif
                 </div>
             </div>
 
@@ -50,6 +62,9 @@
                     <textarea name="description"
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="4">{{ $decant->description }}</textarea>
+                    @if ($errors->has('description'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('description') }}</p>
+                    @endif
                 </div>
 
                 <!-- Gender -->
@@ -61,6 +76,9 @@
                         <option value="Female" {{ $decant->gender == 'Female' ? 'selected' : '' }}>Female</option>
                         <option value="Unisex" {{ $decant->gender == 'Unisex' ? 'selected' : '' }}>Unisex</option>
                     </select>
+                    @if ($errors->has('gender'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('gender') }}</p>
+                    @endif
                 </div>
 
                 <!-- Scent Accords -->
@@ -69,6 +87,9 @@
                     <textarea name="scent_accords"
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="2">{{ $decant->scent_accords }}</textarea>
+                    @if ($errors->has('scent_accords'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('scent_accords') }}</p>
+                    @endif
                 </div>
 
                 <!-- Top Note -->
@@ -77,6 +98,9 @@
                     <textarea name="top_note"
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="2">{{ $decant->top_note }}</textarea>
+                    @if ($errors->has('top_note'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('top_note') }}</p>
+                    @endif
                 </div>
 
                 <!-- Base Note -->
@@ -85,6 +109,9 @@
                     <textarea name="base_note"
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="2">{{ $decant->base_note }}</textarea>
+                    @if ($errors->has('base_note'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('base_note') }}</p>
+                    @endif
                 </div>
 
                 <!-- Country -->
@@ -92,6 +119,9 @@
                     <label for="country" class="block text-sm font-semibold text-gray-700">Country</label>
                     <input type="text" name="country" value="{{ $decant->country }}"
                         class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @if ($errors->has('country'))
+                        <p class="text-red-500 text-sm mt-1">{{ $errors->first('country') }}</p>
+                    @endif
                 </div>
             </div>
 
