@@ -17,14 +17,23 @@ class AdminController extends Controller
     }
 
     // Fetch all decants and show in table
-    public function decants()
+    public function decants(Request $request)
     {
-        // Fetch paginated decants with the associated brand, 10 per page
-        $decants = Decant::with('brand')->paginate(10);
+        // Initialize the query with relationships
+        $query = Decant::with('brand');
+
+        // Apply search filter if there is a search term
+        if ($request->has('search') && $request->search != '') {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Fetch paginated decants, applying search if specified
+        $decants = $query->paginate(10)->appends(['search' => $request->search]);
         $brands = Brand::all(); // Fetch all brands for the dropdown
 
         return view('admin.decants.decants', compact('decants', 'brands'));
     }
+
 
     // Store a new decant
     // Store a new decant
