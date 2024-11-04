@@ -18,13 +18,13 @@
                     <x-nav-link :href="route('admin.decants')" :active="request()->routeIs('admin.decants')">
                         {{ __('Decant') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.brands.brands')" :active="request()->routeIs('admin.brands')">
+                    <x-nav-link :href="route('admin.brands.brands')" :active="request()->routeIs('admin.brands.brands')">
                         {{ __('Brand') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.sizes.sizes')" :active="request()->routeIs('admin.sizes')">
+                    <x-nav-link :href="route('admin.sizes.sizes')" :active="request()->routeIs('admin.sizes.sizes')">
                         {{ __('Size') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.prices.prices')" :active="request()->routeIs('admin.prices')">
+                    <x-nav-link :href="route('admin.prices.prices')" :active="request()->routeIs('admin.prices.prices')">
                         {{ __('Price') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.videos')" :active="request()->routeIs('admin.videos')">
@@ -92,6 +92,21 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.decants')" :active="request()->routeIs('admin.decants')">
+                {{ __('Decant') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.brands.brands')" :active="request()->routeIs('admin.brands.brands')">
+                {{ __('Brand') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.sizes.sizes')" :active="request()->routeIs('admin.sizes.sizes')">
+                {{ __('Size') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.prices.prices')" :active="request()->routeIs('admin.prices.prices')">
+                {{ __('Price') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.videos')" :active="request()->routeIs('admin.videos')">
+                {{ __('Video') }}
             </x-responsive-nav-link>
         </div>
 
