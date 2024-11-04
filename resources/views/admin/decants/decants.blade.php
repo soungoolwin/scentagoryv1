@@ -12,7 +12,7 @@
                     <h3>All Decants</h3>
 
                     <!-- Search Form -->
-                    <form method="GET" action="{{ route('admin.decants.decants') }}" class="mb-6">
+                    <form method="GET" action="{{ route('admin.decants') }}" class="mb-6">
                         <label for="search" class="block text-sm font-medium text-gray-700">Search by Decant
                             Name</label>
                         <div class="flex mt-1">
