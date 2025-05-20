@@ -8,6 +8,7 @@ use App\Models\Price;
 use App\Models\Size;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -50,8 +51,12 @@ class AdminController extends Controller
             'brand_category' => 'required|string',
             'country' => 'nullable|string',
             'brand_id' => 'required|exists:brands,id',
-            'image' => 'required|url'
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+
+
+        $validatedData['image'] = $request->file('image')
+            ->store('decants', 'public');
 
         // Create the decant with the image URL
         Decant::create($validatedData);
@@ -81,24 +86,37 @@ class AdminController extends Controller
             'brand_category' => 'required|string',
             'country' => 'nullable|string',
             'brand_id' => 'required|exists:brands,id',
-            'image' => 'required|url' // Ensure this matches the form input name
+            'image' => 'sometimes|image|mimes:jpg,jpeg,png,webp|max:2048', // Ensure this matches the form input name
         ]);
 
         // Find the decant by ID and update it
         $decant = Decant::findOrFail($id);
+
+
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($decant->image);   // remove old
+            $validatedData['image'] = $request->file('image')
+                ->store('decants', 'public'); // save new
+        }
         $decant->update($validatedData);
 
         return redirect()->route('admin.decants')->with('success', 'Decant updated successfully.');
     }
 
 
-
-    // Delete decant
     public function deleteDecant($id)
     {
         $decant = Decant::findOrFail($id);
+
+        // Remove the image from storage (ignore if file already gone)
+        Storage::disk('public')->delete($decant->image);
+
+        // Delete the database row
         $decant->delete();
-        return redirect()->route('admin.decants')->with('success', 'Decant deleted successfully.');
+
+        return redirect()
+            ->route('admin.decants')
+            ->with('success', 'Decant deleted successfully.');
     }
 
 

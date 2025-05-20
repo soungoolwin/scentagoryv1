@@ -1,4 +1,4 @@
-@extends('components.layout')
+{{-- @extends('components.layout')
 
 @section('content')
     <div class="bg-gray-100 min-h-screen">
@@ -48,7 +48,7 @@
                             @foreach ($decants as $decant)
                                 <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition">
                                     <a href="{{ route('decants.show', $decant->id) }}" class="block">
-                                        <img src="{{ $decant->image }}" alt="Perfume Image"
+                                        <img src="{{ asset('storage/' . $decant->image) }}" alt="Perfume Image"
                                             class="w-full h-48 object-cover rounded-t-lg" />
                                         <div class="p-4">
                                             <h2 class="text-xl font-semibold text-gray-900">{{ $decant->name }}</h2>
@@ -85,5 +85,112 @@
 
         window.addEventListener('load', adjustBrandHeight);
         window.addEventListener('resize', adjustBrandHeight);
+    </script>
+@endsection --}}
+
+@extends('components.layout')
+
+@section('content')
+    <div class="bg-gray-100 min-h-screen">
+        <div class="container mx-auto py-12 px-4 md:px-0">
+            <div class="grid grid-cols-12 gap-8">
+                {{-- spacer --}}
+                <div class="hidden lg:block lg:col-span-1"></div>
+
+                {{-- ─── Brand sidebar ───────────────────────────────────────── --}}
+                <aside
+                    class="hidden md:block md:col-span-3 lg:col-span-2 sticky top-24 h-fit bg-white rounded-xl shadow-lg overflow-hidden">
+                    {{-- header --}}
+                    <div class="px-6 py-4 bg-gradient-to-r from-[#401416] to-[#290F11]">
+                        <h2 class="text-lg font-semibold text-white tracking-wide">
+                            Filter by Brand
+                        </h2>
+                    </div>
+
+                    {{-- quick-search inside brands --}}
+                    <div class="px-4 py-3 border-b">
+                        <input id="brand-search" type="text" placeholder="Quick search…"
+                            class="w-full rounded-lg border-gray-300 text-sm focus:ring-2 focus:ring-[#290F11] focus:border-[#290F11]">
+                    </div>
+
+                    {{-- list --}}
+                    <nav id="brand-list" class="divide-y divide-gray-100 overflow-y-auto custom-scrollbar"
+                        style="max-height: 28rem;">
+                        @foreach ($brands as $brand)
+                            @php $active = request('brand') == $brand->id; @endphp
+                            <a href="{{ route('decants.index', array_merge(request()->except('page'), ['brand' => $brand->id])) }}"
+                                class="block px-6 py-3 text-sm transition
+                                   {{ $active ? 'bg-[#290F11]/10 text-[#290F11] font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                                {{ $brand->name }}
+                            </a>
+                        @endforeach
+                    </nav>
+                </aside>
+
+                {{-- ─── Main content ────────────────────────────────────────── --}}
+                <section class="col-span-12 md:col-span-9 lg:col-span-8">
+                    {{-- title & global search --}}
+                    <div class="md:flex md:items-center md:justify-between mb-8 space-y-4 md:space-y-0">
+                        <h1 class="text-3xl font-bold text-gray-800">Decants</h1>
+
+                        <form method="GET" action="{{ route('decants.index') }}" class="flex w-full md:w-80">
+                            @if (request('brand'))
+                                <input type="hidden" name="brand" value="{{ request('brand') }}">
+                            @endif
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Search decants…"
+                                class="flex-grow border border-gray-300 px-3 py-2 text-sm rounded-l-lg focus:ring-2 focus:ring-[#290F11] focus:border-[#290F11]">
+                            <button type="submit"
+                                class="bg-[#290F11] text-white px-4 rounded-r-lg text-sm hover:bg-[#3b1719] transition">
+                                Search
+                            </button>
+                        </form>
+                    </div>
+
+                    {{-- decant cards --}}
+                    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                        @foreach ($decants as $decant)
+                            <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+                                <a href="{{ route('decants.show', $decant->id) }}">
+                                    <img src="{{ asset('storage/' . $decant->image) }}" alt="{{ $decant->name }}"
+                                        class="w-full h-48 object-cover rounded-t-xl">
+                                    <div class="p-4 space-y-1">
+                                        <h3 class="text-lg font-semibold text-gray-800 truncate">
+                                            {{ $decant->name }}
+                                        </h3>
+                                        <p class="text-sm text-gray-500">
+                                            {{ $decant->priceRange ?? 'Price N/A' }}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    {{-- pagination --}}
+                    <div class="mt-8">
+                        {{ $decants->withQueryString()->links('pagination::custom') }}
+                    </div>
+                </section>
+
+                {{-- spacer --}}
+                <div class="hidden lg:block lg:col-span-1"></div>
+            </div>
+        </div>
+    </div>
+
+    {{-- brand list live-filter --}}
+    <script>
+        const input = document.getElementById('brand-search');
+        const list = document.getElementById('brand-list');
+
+        if (input) {
+            input.addEventListener('input', e => {
+                const q = e.target.value.toLowerCase();
+                [...list.children].forEach(a => {
+                    a.style.display = a.textContent.toLowerCase().includes(q) ? '' : 'none';
+                });
+            });
+        }
     </script>
 @endsection

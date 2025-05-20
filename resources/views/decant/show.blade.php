@@ -10,7 +10,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <!-- Image Column -->
                             <div class="flex justify-center items-center">
-                                <img src="{{ $decant->image }}" alt="Perfume Image"
+                                <img src="{{ asset('storage/' . $decant->image) }}" alt="Perfume Image"
                                     class="w-[490px] h-[490px] object-cover rounded-lg" />
                             </div>
 

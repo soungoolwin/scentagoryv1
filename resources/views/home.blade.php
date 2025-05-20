@@ -26,7 +26,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach ($featuredDecants as $decant)
                     <div class="border p-4 rounded-lg">
-                        <img src="{{ $decant->image }}" alt="{{ $decant->name }}"
+                        <img src="{{ asset('storage/' . $decant->image) }}" alt="{{ $decant->name }}"
                             class="w-full h-48 object-cover rounded" />
                         <h3 class="text-xl font-semibold mt-4">{{ $decant->name }}</h3>
                         <p class="text-gray-600">{{ $decant->priceRange ?? 'Price not available' }}</p>

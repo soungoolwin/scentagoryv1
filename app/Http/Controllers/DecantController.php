@@ -10,29 +10,28 @@ class DecantController extends Controller
 {
     public function index(Request $request)
     {
-        // Get all brands for the filter (to display on the side, if still needed)
-        $brands = Brand::all();
+        $brands = Brand::all();            // for sidebar
+        $query  = Decant::query();         // base query
 
-        // Initialize the query for decants
-        $query = Decant::query();
-
-        // Check if there's a search term (can be brand name or decant name)
-        if ($request->has('search') && $request->search != '') {
-            $searchTerm = $request->search;
-
-            // Search for both decant names and brand names
-            $query->where('name', 'LIKE', '%' . $searchTerm . '%')
-                ->orWhereHas('brand', function ($q) use ($searchTerm) {
-                    $q->where('name', 'LIKE', '%' . $searchTerm . '%');
-                });
+        /* ─── brand filter ─────────────────────────────────────────── */
+        if ($request->filled('brand')) {
+            $query->where('brand_id', $request->brand);
         }
 
-        // Get the paginated results
-        $decants = $query->with('prices')->paginate(9); // Load prices for each decant
+        /* ─── search filter (name or brand name) ───────────────────── */
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhereHas('brand', fn($b) => $b->where('name', 'like', "%{$search}%"));
+            });
+        }
 
-        // Calculate price range for each decant
-        foreach ($decants as $decant) {
-            $decant->priceRange = $this->getPriceRange($decant);
+        /* ─── get results, with prices for range display ───────────── */
+        $decants = $query->with('prices')->paginate(9)->withQueryString();
+
+        foreach ($decants as $d) {
+            $d->priceRange = $this->getPriceRange($d);
         }
 
         return view('decant.index', compact('decants', 'brands'));
