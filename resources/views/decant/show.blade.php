@@ -39,7 +39,7 @@
                                             @foreach ($decant->prices as $price)
                                                 <option value="{{ $price->size->id }}"
                                                     {{ $selectedPrice && $selectedPrice->size_id == $price->size->id ? 'selected' : '' }}>
-                                                    {{ $price->size->size }} ml
+                                                    {{ $price->size->size }}
                                                 </option>
                                             @endforeach
                                         </select>
