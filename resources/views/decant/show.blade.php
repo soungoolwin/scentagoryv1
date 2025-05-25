@@ -9,9 +9,11 @@
                     <div class="container mx-auto py-12 px-4 md:px-0">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <!-- Image Column -->
-                            <div class="flex justify-center items-center">
-                                <img src="{{ asset('storage/' . $decant->image) }}" alt="Perfume Image"
-                                    class="w-[490px] h-[490px] object-cover rounded-lg" />
+                            <div class="flex justify-center items-start">
+                                <div class="relative w-full max-w-sm aspect-square bg-gray-100 p-10 rounded-lg">
+                                    <img src="{{ asset('storage/' . $decant->image) }}" alt="{{ $decant->name }}"
+                                        class="absolute inset-0 w-full h-full object-contain p-4">
+                                </div>
                             </div>
 
                             <!-- Decant Information Column -->

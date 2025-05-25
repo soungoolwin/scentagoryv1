@@ -152,8 +152,10 @@
                         @foreach ($decants as $decant)
                             <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
                                 <a href="{{ route('decants.show', $decant->id) }}">
-                                    <img src="{{ asset('storage/' . $decant->image) }}" alt="{{ $decant->name }}"
-                                        class="w-full h-48 object-cover rounded-t-xl">
+                                    <div class="relative w-full aspect-[3/4] bg-gray-100">
+                                        <img src="{{ asset('storage/' . $decant->image) }}" alt="{{ $decant->name }}"
+                                            class="absolute inset-0 w-full h-full object-contain p-2">
+                                    </div>
                                     <div class="p-4 space-y-1">
                                         <h3 class="text-lg font-semibold text-gray-800 truncate">
                                             {{ $decant->name }}
