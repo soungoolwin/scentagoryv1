@@ -51,7 +51,7 @@ class AdminController extends Controller
             'brand_category' => 'required|string',
             'country' => 'nullable|string',
             'brand_id' => 'required|exists:brands,id',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:20480',
         ]);
 
 
